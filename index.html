@@ -387,10 +387,6 @@
                         <label>Additional Details</label>
                         <textarea id="details" placeholder="Lawn size, frequency, any specific needs..."></textarea>
                     </div>
-                    <div class="form-group">
-                        <label>Upload Photos of Your Lawn (Optional)</label>
-                        <input type="file" id="photos" multiple accept="image/*" style="padding: 8px;">
-                    </div>
                     <button type="submit">Request Free Quote</button>
                 </form>
             </div>
@@ -436,7 +432,7 @@
     </footer>
 
     <script>
-        async function handleQuote(e) {
+        function handleQuote(e) {
             e.preventDefault();
             
             const name = document.getElementById('name').value;
@@ -445,42 +441,25 @@
             const area = document.getElementById('area').value;
             const services = document.getElementById('services').value;
             const details = document.getElementById('details').value;
-            const photosInput = document.getElementById('photos');
 
-            // Create FormData to handle files
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('phone', phone);
-            formData.append('email', email);
-            formData.append('area', area);
-            formData.append('services', services);
-            formData.append('details', details);
+            // Compose email body
+            const body = `
+New Quote Request from Website:
 
-            // Add photos if selected
-            if (photosInput.files.length > 0) {
-                for (let i = 0; i < photosInput.files.length; i++) {
-                    formData.append('photos', photosInput.files[i]);
-                }
-            }
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Area: ${area}
+Services: ${services}
+Details: ${details}
+            `.trim();
 
-            try {
-                const response = await fetch('/api/submit-quote', {
-                    method: 'POST',
-                    body: formData,
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    alert('Quote submitted successfully! Joe will be in touch soon.');
-                    document.querySelector('form').reset();
-                } else {
-                    alert('Error: ' + result.error);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Failed to submit quote. Please try again.');
-            }
+            // Open email client
+            window.location.href = `mailto:joesmowingns@gmail.com?subject=Quote Request from ${name}&body=${encodeURIComponent(body)}`;
+            
+            // Reset form
+            document.querySelector('form').reset();
+            alert('Email client opening... Your quote request will be sent to Joe.');
         }
 
         // Smooth scroll
