@@ -1,0 +1,9 @@
+{
+  "name": "joes-mowing",
+  "version": "1.0.0",
+  "description": "Joe's Mowing - Northshore Weed Wacking & Mowing",
+  "dependencies": {
+    "nodemailer": "^6.9.7",
+    "formidable": "^3.5.1"
+  }
+}
