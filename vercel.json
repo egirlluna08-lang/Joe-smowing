@@ -1,10 +1,5 @@
 {
   "buildCommand": "npm install",
   "outputDirectory": ".",
-  "public": true,
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  "public": true
 }
