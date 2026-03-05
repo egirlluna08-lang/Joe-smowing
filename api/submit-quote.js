@@ -1,7 +1,8 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import { IncomingForm } from 'formidable';
 import fs from 'fs';
-import path from 'path';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -35,15 +36,6 @@ Additional Details: ${details}
 Sent from Joe's Mowing Website
     `.trim();
 
-    // Configure email transporter
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASSWORD,
-      },
-    });
-
     // Prepare attachments
     const attachments = [];
     for (const file of photos) {
@@ -54,14 +46,18 @@ Sent from Joe's Mowing Website
       });
     }
 
-    // Send email with attachments
-    await transporter.sendMail({
-      from: process.env.GMAIL_USER,
+    // Send email with Resend
+    const response = await resend.emails.send({
+      from: 'noreply@resend.dev',
       to: 'joesmowingns@gmail.com',
       subject: `Quote Request from ${name}`,
       text: emailBody,
       attachments: attachments,
     });
+
+    if (response.error) {
+      throw new Error(response.error.message);
+    }
 
     // Cleanup uploaded files
     photos.forEach(file => {
