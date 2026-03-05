@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joe's Mowing - Northshore Weed Wacking & Mowing</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d5016 0%, #1a3a0a 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        nav {
+            background: white;
+            padding: 16px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        nav a {
+            color: #2d5016;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #1a3a0a;
+        }
+
+        .hero {
+            background: url('job1.jpg') center / cover no-repeat;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-text h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section h2 {
+            color: #2d5016;
+            font-size: 28px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .about-text {
+            background: #f9f9f9;
+            padding: 24px;
+            border-radius: 8px;
+            border-left: 4px solid #2d5016;
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border: 2px solid #2d5016;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .service-card h3 {
+            color: #2d5016;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: #666;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .quote-form {
+            background: #f0f8e8;
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quote-form h3 {
+            color: #2d5016;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #2d5016;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #2d5016 0%, #1a3a0a 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            background: white;
+            border: 2px solid #2d5016;
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            color: #2d5016;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            margin-bottom: 16px;
+        }
+
+        .contact-item strong {
+            color: #2d5016;
+        }
+
+        .areas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #eee;
+        }
+
+        .areas span {
+            background: #f0f8e8;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        footer {
+            background: #2d5016;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .services, .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                margin: 0 10px;
+                font-size: 14px;
+            }
+
+            .hero-text h2 {
+                font-size: 24px;
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            .section h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌿 Joe's Mowing</h1>
+        <p>Northshore Weed Wacking & Mowing - Fair Prices, Free Quotes</p>
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#quote">Get Quote</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-text">
+            <h2>Professional Lawn Care for Northshore</h2>
+            <p>Quality work. Fair prices. Free quotes.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2>About Joe</h2>
+            <div class="about-text">
+                <p>Hi, I'm Joe. At 20 years old, I'm bringing professional lawn care to the Northshore with a focus on quality work and fair prices.</p>
+                <p style="margin-top: 16px;">After 6 months working in the landscaping industry, I understand what it takes to keep lawns looking sharp. Whether it's regular mowing, weed wacking, or tackling overgrown sections, I treat every yard like it matters—because it does.</p>
+                <p style="margin-top: 16px;">I'm based locally in Northshore and service Whangaparoa, Orewa, Silverdale, Millwater, and Albany. No job's too small, and all quotes are free.</p>
+                <p style="margin-top: 16px;"><strong>Let's get your lawn looking great.</strong></p>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section">
+            <h2>Services</h2>
+            <div class="services">
+                <div class="service-card">
+                    <h3>🔪 Lawn Mowing</h3>
+                    <p>Regular mowing, edges trimmed, professional finish. Keep your lawn looking pristine every week.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🌾 Weed Wacking</h3>
+                    <p>Clean edges, overgrown sections, tight spots. Everything gets trimmed and neat.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section">
+            <h2>Recent Work</h2>
+            <div class="gallery">
+                <img src="job1.jpg" alt="Lawn mowing job 1">
+                <img src="job2.jpg" alt="Lawn mowing job 2">
+                <img src="job3.jpg" alt="Lawn mowing job 3">
+                <img src="job4.jpg" alt="Lawn mowing job 4">
+            </div>
+        </section>
+
+        <!-- Quote Form Section -->
+        <section id="quote" class="section">
+            <h2>Get a Free Quote</h2>
+            <div class="quote-form">
+                <h3>Tell me about your lawn</h3>
+                <form onsubmit="handleQuote(event)">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Service Area</label>
+                        <select id="area" required style="width: 100%; padding: 12px; border: 1px solid #2d5016; border-radius: 6px;">
+                            <option value="">Select your area</option>
+                            <option value="Whangaparoa">Whangaparoa</option>
+                            <option value="Orewa">Orewa</option>
+                            <option value="Silverdale">Silverdale</option>
+                            <option value="Millwater">Millwater</option>
+                            <option value="Albany">Albany</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Services Needed</label>
+                        <textarea id="services" placeholder="Lawn mowing, weed wacking, or both?" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Additional Details</label>
+                        <textarea id="details" placeholder="Lawn size, frequency, any specific needs..."></textarea>
+                    </div>
+                    <button type="submit">Request Free Quote</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2>Get in Touch</h2>
+            <div class="contact-info">
+                <h3>Contact Joe</h3>
+                <div class="contact-item">
+                    <strong>📞 Phone:</strong> +64 21 314 630
+                </div>
+                <div class="contact-item">
+                    <strong>📧 Email:</strong> joesmowingns@gmail.com
+                </div>
+                <div class="contact-item">
+                    <strong>📍 Service Areas:</strong>
+                    <div class="areas">
+                        <span>Whangaparoa</span>
+                        <span>Orewa</span>
+                        <span>Silverdale</span>
+                        <span>Millwater</span>
+                        <span>Albany</span>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; font-size: 14px; color: #666;">Feel free to call or email anytime. Free quotes on all jobs!</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Joe's Mowing. All rights reserved. | Based in Northshore, Auckland</p>
+    </footer>
+
+    <script>
+        function handleQuote(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const area = document.getElementById('area').value;
+            const services = document.getElementById('services').value;
+            const details = document.getElementById('details').value;
+
+            // Compose email body
+            const body = `
+New Quote Request from Website:
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Area: ${area}
+Services: ${services}
+Details: ${details}
+            `.trim();
+
+            // Open email client
+            window.location.href = `mailto:joesmowingns@gmail.com?subject=Quote Request from ${name}&body=${encodeURIComponent(body)}`;
+            
+            // Reset form
+            document.querySelector('form').reset();
+            alert('Email client opening... Your quote request will be sent to Joe.');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
